@@ -1,0 +1,29 @@
+stages:
+  prepare:
+    cmd: python3 src/prepare.py
+    deps:
+    - src/prepare.py
+    outs:
+    - data/prepared
+  train:
+    cmd: python3 src/train.py data/prepared model_dt.pkl
+    deps:
+    - data/prepared
+    - src/train.py
+    params:
+    - train
+    outs:
+    - data/test
+    - model_dt.pkl
+  evaluate:
+    cmd: python3 src/evaluate.py model_dt.pkl data/test accuracy_file.json plots_file.json
+    deps:
+    - data/test
+    - model_dt.pkl
+    - src/evaluate.py
+    metrics:
+    - accuracy_file.json:
+        cache: false
+    plots:
+    - plots_file.json:
+        cache: false
