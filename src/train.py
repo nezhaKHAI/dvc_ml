@@ -20,9 +20,8 @@ min_samples_leaf = params['min_samples_leaf']
 #read the data 
 df_train = pd.read_csv('data/prepared/newdata.csv')
 
-X = df_train.values[:, 0:10]
-Y = df_train.values[:, 10]
-print(Y)
+X = df_train.values[:, 0:12]
+Y = df_train.values[:, 12]
 #split and train the model
 X_train, X_test, y_train, y_test = train_test_split(
            X, Y, test_size = test_size, random_state = random_state)

@@ -4,23 +4,23 @@ stages:
     cmd: python3 src/prepare.py
     deps:
     - path: src/prepare.py
-      md5: a600f1d48d563cc900bd6f3cc8e42bb3
-      size: 1465
+      md5: 69c5dc8460bf16c4d45a3e29f40ebd91
+      size: 1466
     outs:
     - path: data/prepared
-      md5: 6201550ec5cb8338f2bc93e118b13c04.dir
-      size: 1106724
+      md5: d59c5a31b72f03291a7a6e8110ae7da2.dir
+      size: 1171851
       nfiles: 1
   train:
     cmd: python3 src/train.py data/prepared model_dt.pkl
     deps:
     - path: data/prepared
-      md5: 6201550ec5cb8338f2bc93e118b13c04.dir
-      size: 1106724
+      md5: d59c5a31b72f03291a7a6e8110ae7da2.dir
+      size: 1171851
       nfiles: 1
     - path: src/train.py
-      md5: 79b895b5b65d62429bb672bb3acdf511
-      size: 1340
+      md5: c0c03cb51ad25dd0dbcc7b74007545b7
+      size: 1330
     params:
       params.yaml:
         train:
@@ -31,29 +31,29 @@ stages:
           min_samples_leaf: 5
     outs:
     - path: data/test
-      md5: fc3bfcb0ee58f683fff41ec6ea144231.dir
-      size: 573457
+      md5: a96d06694e429fe2b7d379e35331f0ed.dir
+      size: 677665
       nfiles: 2
     - path: model_dt.pkl
-      md5: 93fb038fd25e489ac0b8987f303bc1bf
-      size: 50595
+      md5: 6e7e77b3fc251b155bb00f9b49dbdcea
+      size: 23731
   evaluate:
     cmd: python3 src/evaluate.py model_dt.pkl data/test accuracy_file.json plots_file.json
     deps:
     - path: data/test
-      md5: fc3bfcb0ee58f683fff41ec6ea144231.dir
-      size: 573457
+      md5: a96d06694e429fe2b7d379e35331f0ed.dir
+      size: 677665
       nfiles: 2
     - path: model_dt.pkl
-      md5: 93fb038fd25e489ac0b8987f303bc1bf
-      size: 50595
+      md5: 6e7e77b3fc251b155bb00f9b49dbdcea
+      size: 23731
     - path: src/evaluate.py
       md5: 1a80ac959862e50828b95cd9c8e10e96
       size: 807
     outs:
     - path: accuracy_file.json
-      md5: a012505208f3da7574b6d83a0a9f5dbd
-      size: 26
+      md5: 449b4730ea52c573ffae6e54c544178e
+      size: 25
     - path: plots_file.json
-      md5: 49c1666dd2c41e30aa5a48c44a463590
-      size: 43
+      md5: 24bd0c00d20c314fd696bd4025a6473c
+      size: 42

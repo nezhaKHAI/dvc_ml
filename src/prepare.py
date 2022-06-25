@@ -41,6 +41,6 @@ for col in category_col:
  
     mapping_dict[col] = le_name_mapping
 
-df = df.drop(['race'],axis=1)
+#df = df.drop(['race'],axis=1)
 #save the prepared data in the specific path in csv file
 df.to_csv(os.path.join(data_path,'newdata.csv'))
