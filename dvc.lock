@@ -24,36 +24,36 @@ stages:
     params:
       params.yaml:
         train:
-          test_size: 0.2
+          test_size: 0.3
           random_state: 100
           criterion: gini
           max_depth: 5
           min_samples_leaf: 5
     outs:
     - path: data/test
-      md5: a96d06694e429fe2b7d379e35331f0ed.dir
-      size: 677665
+      md5: b77885d88ea0d8bbbd17b6540ccca301.dir
+      size: 1016298
       nfiles: 2
     - path: model_dt.pkl
-      md5: 6e7e77b3fc251b155bb00f9b49dbdcea
-      size: 23731
+      md5: c9ebbdb0e12b94cac8de3a2a2c491de2
+      size: 23267
   evaluate:
     cmd: python3 src/evaluate.py model_dt.pkl data/test accuracy_file.json plots_file.json
     deps:
     - path: data/test
-      md5: a96d06694e429fe2b7d379e35331f0ed.dir
-      size: 677665
+      md5: b77885d88ea0d8bbbd17b6540ccca301.dir
+      size: 1016298
       nfiles: 2
     - path: model_dt.pkl
-      md5: 6e7e77b3fc251b155bb00f9b49dbdcea
-      size: 23731
+      md5: c9ebbdb0e12b94cac8de3a2a2c491de2
+      size: 23267
     - path: src/evaluate.py
       md5: 1a80ac959862e50828b95cd9c8e10e96
       size: 807
     outs:
     - path: accuracy_file.json
-      md5: 449b4730ea52c573ffae6e54c544178e
+      md5: 4f1f46abebb9d307bbe357ec52a1984e
       size: 25
     - path: plots_file.json
-      md5: 24bd0c00d20c314fd696bd4025a6473c
+      md5: c38f4357866149d1f293bbfbcf59b3c3
       size: 42
