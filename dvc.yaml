@@ -5,10 +5,18 @@ stages:
     - src/prepare.py
     outs:
     - data/prepared
-  train:
-    cmd: python3 src/train.py data/prepared model_dt.pkl
+  feature:
+    cmd: python3 src/feature.py data/prepared 
     deps:
     - data/prepared
+    - src/feature.py
+    outs:
+    - data/features
+  train:
+    cmd: python3 src/train.py data/prepared data/features model_dt.pkl
+    deps:
+    - data/prepared
+    - data/features
     - src/train.py
     params:
     - train

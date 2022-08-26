@@ -19,9 +19,10 @@ max_depth = params['max_depth']
 min_samples_leaf = params['min_samples_leaf']
 #read the data 
 df_train = pd.read_csv('data/prepared/newdata.csv')
-
-X = df_train.values[:, 0:12]
-Y = df_train.values[:, 12]
+#read features selected 
+predictors= pickle.load( open( "data/features/best_features.pkl", "rb") )
+X = df_train[predictors]
+Y = df_train['income']
 #split and train the model
 X_train, X_test, y_train, y_test = train_test_split(
            X, Y, test_size = test_size, random_state = random_state)

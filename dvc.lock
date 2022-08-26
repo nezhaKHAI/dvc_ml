@@ -4,23 +4,27 @@ stages:
     cmd: python3 src/prepare.py
     deps:
     - path: src/prepare.py
-      md5: 69c5dc8460bf16c4d45a3e29f40ebd91
-      size: 1466
+      md5: 887ad182b2894bf666e082037e505984
+      size: 1434
     outs:
     - path: data/prepared
       md5: d59c5a31b72f03291a7a6e8110ae7da2.dir
       size: 1171851
       nfiles: 1
   train:
-    cmd: python3 src/train.py data/prepared model_dt.pkl
+    cmd: python3 src/train.py data/prepared data/features model_dt.pkl
     deps:
+    - path: data/features
+      md5: 73c0e7bfefa2c1f9e6f08c14e10b2787.dir
+      size: 69
+      nfiles: 1
     - path: data/prepared
       md5: d59c5a31b72f03291a7a6e8110ae7da2.dir
       size: 1171851
       nfiles: 1
     - path: src/train.py
-      md5: c0c03cb51ad25dd0dbcc7b74007545b7
-      size: 1330
+      md5: 929d27dcd67de3efa77ee0144ad2bc79
+      size: 1421
     params:
       params.yaml:
         train:
@@ -31,29 +35,44 @@ stages:
           min_samples_leaf: 5
     outs:
     - path: data/test
-      md5: f019b1974ca71c5a921d49da3ee39dab.dir
-      size: 677665
+      md5: bed0497d864ffe663db1781b09855c2e.dir
+      size: 418220
       nfiles: 2
     - path: model_dt.pkl
-      md5: 211ca9981e7efaeafdc92a56cb106944
-      size: 24035
+      md5: 28171427b99af11df9ee85972205055c
+      size: 4874
   evaluate:
     cmd: python3 src/evaluate.py model_dt.pkl data/test accuracy_file.json plots_file.json
     deps:
     - path: data/test
-      md5: f019b1974ca71c5a921d49da3ee39dab.dir
-      size: 677665
+      md5: bed0497d864ffe663db1781b09855c2e.dir
+      size: 418220
       nfiles: 2
     - path: model_dt.pkl
-      md5: 211ca9981e7efaeafdc92a56cb106944
-      size: 24035
+      md5: 28171427b99af11df9ee85972205055c
+      size: 4874
     - path: src/evaluate.py
       md5: 1a80ac959862e50828b95cd9c8e10e96
       size: 807
     outs:
     - path: accuracy_file.json
-      md5: 2771189a56ba7a25c1d93456f5d93433
+      md5: c505385b45224768012c50448ca27b75
       size: 26
     - path: plots_file.json
-      md5: 7177f9346c47907393218c2223cc4f6e
+      md5: d887ca8b112e0e5859e8856ab267bb01
       size: 43
+  feature:
+    cmd: python3 src/feature.py data/prepared
+    deps:
+    - path: data/prepared
+      md5: d59c5a31b72f03291a7a6e8110ae7da2.dir
+      size: 1171851
+      nfiles: 1
+    - path: src/feature.py
+      md5: 4d0cdeb3b6dcb78629c9562e7123f8da
+      size: 1607
+    outs:
+    - path: data/features
+      md5: 73c0e7bfefa2c1f9e6f08c14e10b2787.dir
+      size: 69
+      nfiles: 1
