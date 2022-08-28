@@ -26,7 +26,6 @@ Y = df_train['income']
 #split and train the model
 X_train, X_test, y_train, y_test = train_test_split(
            X, Y, test_size = test_size, random_state = random_state)
-print(y_test)
  
 dt_clf_gini = DecisionTreeClassifier(criterion = criterion,
                                      random_state = random_state,

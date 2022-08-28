@@ -54,6 +54,7 @@ for i in range(1,len(param_df)):
     scores.append(np.mean(scoreCV))
 best_features=param_df.index[0:4].values
 features=list(best_features)
+print("Best_features:",features)
 pickle.dump(features, open(os.path.join(data_path,'best_features.pkl'), 'wb'))
 
 

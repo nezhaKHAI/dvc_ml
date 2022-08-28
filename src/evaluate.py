@@ -16,7 +16,7 @@ model = pickle.load( open( "model_dt.pkl", "rb") )
 
 #make predictions        
 y_pred_gini = model.predict(x_test)
-print(y_test)
+print("prediction: ",y_pred_gini)
 
 #calculate the accuracy
 accuracy=accuracy_score(y_test, y_pred_gini)*100 
