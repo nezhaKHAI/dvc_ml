@@ -39,7 +39,7 @@ stages:
       size: 209836
       nfiles: 2
     - path: model_dt.pkl
-      md5: b9822734d43321da8de5443549011588
+      md5: 994a7f6afd53812e9573a68cbfd6f813
       size: 4874
   evaluate:
     cmd: python3 src/evaluate.py model_dt.pkl data/test accuracy_file.json plots_file.json
@@ -49,7 +49,7 @@ stages:
       size: 209836
       nfiles: 2
     - path: model_dt.pkl
-      md5: b9822734d43321da8de5443549011588
+      md5: 994a7f6afd53812e9573a68cbfd6f813
       size: 4874
     - path: src/evaluate.py
       md5: 9da2c4d4e72e45b0bae4a299cf97f8ff

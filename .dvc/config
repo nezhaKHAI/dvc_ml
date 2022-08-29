@@ -1,4 +1,0 @@
-[core]
-    remote = dvc_ml
-['remote "dvc_ml"']
-    url = https://github.com/nezhaKHAI/dvc_ml.git
